@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+  <main class="container">
+
+    <!-- 1. Header: title + add-task form -->
+    <header>
+      <h1>My Tasks</h1>
+      <form id="todo-form">
+        <input type="text" id="task-input" placeholder="Add a new task..." required>
+        <select id="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <input type="date" id="due-date">
+        <button type="submit">Add</button>
+      </form>
+    </header>
+
+    <!-- 2. Filter/sort bar -->
+    <section class="controls">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="done">Done</button>
+      <select id="sort-by">
+        <option value="date">Sort by date</option>
+        <option value="priority">Sort by priority</option>
+      </select>
+    </section>
+
+    <!-- 3. Task list -->
+    <ul id="task-list" role="list" aria-label="Todo items">
+      <!-- Tasks injected here by JS -->
+       <li class="task-item" data-id="1" data-priority="high">
+  <input type="checkbox" class="task-check" id="task-1">
+  <label for="task-1" class="task-text">Buy groceries</label>
+  <span class="priority-badge high">High</span>
+  <span class="due-date">Dec 20</span>
+  <button class="edit-btn" aria-label="Edit task">✏️</button>
+  <button class="delete-btn" aria-label="Delete task">🗑</button>
+</li>
+    </ul>
+
+    <!-- 4. Footer: count + clear -->
+    <footer class="todo-footer">
+      <span id="task-count">0 tasks left</span>
+      <button id="clear-done">Clear completed</button>
+    </footer>
+
+  </main>
+  <script src="todo.js"></script>
+</body>
+</html>

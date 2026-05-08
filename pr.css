@@ -1,0 +1,28 @@
+body{
+    background-color: bisque;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#txt{
+    text-align: center;
+    color: black;
+    justify-content: center;
+}
+form{
+     text-align: center;
+    color: black;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+  font-family: "Parisienne", cursive;
+  font-weight: 400;
+  font-style: normal;
+}

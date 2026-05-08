@@ -1,0 +1,32 @@
+
+.parisienne-regular{
+  font-family: "Parisienne", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+body{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 25px;
+    background: linear-gradient(to right,pink,brown);
+}
+table{
+    border-collapse: collapse;
+    width: 40%;
+}
+th,td{
+    padding: 10px 20px ;
+    text-align: center;
+}
+#display{
+    border: 1px solid black;
+    width: 40%;
+}
+
+#control{
+    padding: 25px 25px;
+    margin-right: 20px;
+    text-align: center;
+}

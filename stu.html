@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="stu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="head">
+        <h1 class="parisienne-regular">Enter Student Details</h1>
+        <h3>All flowers are unique..</h3>
+        <h3>Don't compare them</h3>
+    </div>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Semester</th>
+            <th>Location</th>
+            <th>Marks</th>
+            <th>Attendance</th>
+            <th>Performance</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td><input type="text"   id="name"       placeholder="Name"></td>
+            <td><input type="text"   id="dept"       placeholder="Department"></td>
+            <td><input type="number" id="sem"        placeholder="Semester"></td>
+            <td><input type="text"   id="loc"        placeholder="Location"></td>
+            <td><input type="number" id="mar"        placeholder="0-100" min="0" max="100"></td>
+            <td><input type="number" id="attendance" placeholder="Attendance %"></td>
+            <td>
+                <select id="per">
+                    <option value="">Select</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </td>
+            <td><button type="button" onclick="addstu()">Add Info</button></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <div id="control">
+        <button type="button" onclick="sortbymarks()">Sort By Marks</button>
+        <button type="button" onclick="sortbydept()">Sort By Department</button>
+        <button type="button" onclick="sortbyperform()">Sort By Performance</button>
+        <button type="button" onclick="displaystudents(students)">Show All</button>
+    </div>
+
+    <br>
+
+    <h2>Student Details</h2>
+    <table id="display" border="1">
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Semester</th>
+            <th>Location</th>
+            <th>Marks /100</th>
+            <th>Attendance</th>
+            <th>Performance</th>
+        </tr>
+        <tbody id="tablebody"></tbody>
+    </table>
+
+    <script>
+        let students = [];
+
+        function addstu() {
+            let marks = Number(document.getElementById("mar").value);
+
+            if (marks < 0 || marks > 100) {
+                alert("Marks must be between 0 and 100!");
+                return;
+            }
+
+            let student = {
+                name:    document.getElementById("name").value,
+                dept:    document.getElementById("dept").value,
+                sem:     document.getElementById("sem").value,
+                loc:     document.getElementById("loc").value,
+                marks:   marks,
+                attend:  Number(document.getElementById("attendance").value),
+                perform: document.getElementById("per").value
+            };
+
+            students.push(student);
+            displaystudents(students);
+        }
+
+        function displaystudents(list) {
+            let tbody = document.getElementById("tablebody");
+            tbody.innerHTML = "";
+
+            list.forEach(function(s) {
+                let row = "<tr>" +
+                    "<td>" + s.name    + "</td>" +
+                    "<td>" + s.dept    + "</td>" +
+                    "<td>" + s.sem     + "</td>" +
+                    "<td>" + s.loc     + "</td>" +
+                    "<td>" + s.marks   + "/100</td>" +
+                    "<td>" + s.attend  + "%</td>" +
+                    "<td>" + s.perform + "</td>" +
+                "</tr>";
+                tbody.innerHTML += row;
+            });
+        }
+
+        function sortbymarks() {
+            let sort = [...students].sort(function(a, b) {
+                return b.marks - a.marks;
+            });
+            displaystudents(sort);
+        }
+
+        function sortbydept() {
+            let sort = [...students].sort(function(a, b) {
+                return a.dept.localeCompare(b.dept);
+            });
+            displaystudents(sort);
+        }
+
+        function sortbyperform() {
+            let rank = { "High": 1, "Medium": 2, "Low": 3 };
+            let sort = [...students].sort(function(a, b) {
+                return rank[a.perform] - rank[b.perform];
+            });
+            displaystudents(sort);
+        }
+    </script>
+
+</body>
+</html>
