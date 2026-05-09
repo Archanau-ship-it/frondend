@@ -1,0 +1,1 @@
+These projects were built to practice and strengthen my frontend development skills as a student. Each mini project focuses on a different concept like DOM manipulation, styling, event handling, and page navigation.
